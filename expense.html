@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #k{
+        height: 980px;
+        width: 700px;
+       border:2px solid white;
+       position: relative;
+       left:300px;
+       top: 50px;
+       background-color: white;
+       border-radius:05%
+    }
+    #income{
+        text-align: center;
+        position: relative;
+        top: 10px;
+    }
+    #expense{
+        text-align: center;
+        position: relative;
+        top: 10px;
+    }
+    #description{
+        height: 40px;
+        width: 600px;
+        position: relative;
+        left: 20px;
+        bottom: 150px;
+    }
+    #amount{
+        height: 40px;
+        width: 600px;
+        position: relative;
+        left: 20px;
+        bottom: 150px;
+    }
+    #submit{
+        border-radius:0.5px;
+        background-color:rgb(180, 80, 180);
+        color: white;
+        height: 40px;
+        position: relative;
+        left: 290px;
+        bottom: 120px;
+    }
+    #button{
+         border-radius:0.5px;
+        background-color:rgb(180, 80, 180);
+        color: white;
+        height: 40px;
+        width: 80px;
+        position: relative;
+        right: 310px;
+        bottom: 30px;
+    }
+    #input{
+         height: 40px;
+        width: 600px;
+        position: relative;
+        left:20px;
+        bottom: 120px;
+    }
+</style>
+<body>
+    <div style="background-color:rgb(241, 239, 239);height: 1200px;;">
+    <div id="k">
+        <h1  style="color:rgb(180, 80, 180);text-align: center;font-size:40px;">Expense Tracker</h1>
+        <h2 style="text-align: center;font-size:30px;position: relative;bottom:10px;">Your Balance</h2>
+        <h1 style="color:rgb(180, 80, 180);text-align: center;font-size:30px;position: relative;bottom: 30px;" id="balance">$0.00</h1>
+        <div style="height:120px; width: 300px;background-color: rgb(233, 231, 227);border-radius:10%;position: relative;left: 20px;bottom:20px;">
+            <h1 style="text-align: center;position: relative;top: 20px;">Income</h1>
+            <h2 id="income">$0.00</h2>
+        </div >
+         <div style="height:120px; width: 300px;background-color:rgb(247, 187, 165);border-radius:10%;position: relative;left: 380px;bottom:160px;">
+            <h1 style="text-align: center;position: relative;top: 20px;">Expenses</h1>
+            <h2 id="expense">$0.00</h2>
+        </div>
+        <h1 style="position: relative;bottom: 150px;left: 20px;">Add Transaction</h1>
+        <h3 style="position: relative;bottom:150px;left:20px;">Description</h3>
+        <input type="text" id="description" placeholder="Enater the description">
+         <h3 style="position: relative;bottom:150px;left:20px;">Amount (negative-Expenses,positive-Expenses)</h3>
+        <input type="number" id="amount" placeholder="Enter the Amount" >
+        <button id="submit">Add Transaction</button>
+        <h2 style="color: rgb(180, 80, 180);position: relative;left: 20px;bottom: 120px;">Transaction History</h2>
+        <h2 style="position: relative;left: 20px;bottom: 120px;">Amount</h2>
+        <input type="number" id="input">
+        <button id="button">Submit</button>
+    </div>
+    </div>
+    <script>
+        document.getElementById("submit").addEventListener("click",function(){
+            let description=document.getElementById("description").value ;
+             let amount=Number(document.getElementById("amount").value);
+             if(description==="salary","Salary" && amount > 0){
+                document.getElementById("income").innerText="$"+amount.toFixed(2);
+                 
+             }
+        })
+       
+        let salary=0
+        let totalExpense=0
+        document.getElementById("submit").addEventListener("click",function(){
+            let description=document.getElementById("description").value.trim().toLowerCase();
+             let amount=Number(document.getElementById("amount").value);
+             if(description==="salary" && amount > 0){
+                salary=amount;
+                document.getElementById("income").innerText="$"+salary.toFixed(2);
+                 document.getElementById("balance").innerText="$"+salary.toFixed(2);
+             }
+        })
+        document.getElementById("button").addEventListener("click",function(){
+            let expenseAmount=Number(document.getElementById("input").value);
+            if(expenseAmount > 0 && salary > 0) {
+                totalExpense=totalExpense+expenseAmount;
+                let remainingBalance=salary-totalExpense;
+                document.getElementById("expense").innerText="$"+totalExpense.toFixed(2)
+                document.getElementById("balance").innerText="$"+remainingBalance.toFixed(2)
+                document.getElementById("input").value=""
+            }
+        });
+    </script>
+</body> 
+</html>
